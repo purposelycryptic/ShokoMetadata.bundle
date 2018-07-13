@@ -104,7 +104,8 @@ class ShokoCommonAgent:
         series = HttpReq("api/serie?id=%s&level=3&allpics=1&tagfilter=%d" % (aid, flags))
 
         # build metadata on the TV show.
-        metadata.summary = try_get(series, 'summary')
+        #Strip internal AniDB links that Plex can't use from summary
+        metadata.summary = re.sub(r'http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]', r'\1', try_get(series, 'summary')).replace("`", "'")
         metadata.title = series['name']
         metadata.rating = float(series['rating'])
         year = try_get(series, "year", None)
