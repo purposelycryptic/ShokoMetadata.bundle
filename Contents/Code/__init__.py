@@ -105,7 +105,7 @@ class ShokoCommonAgent:
 
         # build metadata on the TV show.
         #Strip internal AniDB links that Plex can't use, as well as "Based on:" and Initial airing notes and Summary Source citations from summary.
-        metadata.summary = re.sub(r'http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]', r'\1', re.sub(r'^\* B.*\n+|\nSource:\w*[\w\W]*()', r'\1', try_get(series, 'summary'))).replace("`", "'")
+        metadata.summary = re.sub(r'http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]', r'\1', re.sub(r'\* B.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*', "", try_get(series, 'summary'))).replace("`", "'")
         metadata.title = series['name']
         metadata.rating = float(series['rating'])
         year = try_get(series, "year", None)
