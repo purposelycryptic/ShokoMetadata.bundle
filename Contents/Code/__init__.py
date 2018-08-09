@@ -104,8 +104,7 @@ class ShokoCommonAgent:
         series = HttpReq("api/serie?id=%s&level=3&allpics=1&tagfilter=%d" % (aid, flags))
 
         # build metadata on the TV show.
-        #Strip internal AniDB links that Plex can't use, as well as "Based on:" and Initial airing notes and Summary Source citations from summary.
-        metadata.summary = re.sub(r'http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]', r'\1', re.sub(r'\* B.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*', "", try_get(series, 'summary'))).replace("`", "'")
+        metadata.summary = re.sub(r'http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]', r'\1', re.sub(r'\* B.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*', "", try_get(series, 'summary'))).replace("`", "'")    ###Strip internal AniDB links that Plex can't use, as well as "Based on:" and Initial airing notes and Summary Source citations from summary.
         metadata.title = series['name']
         metadata.rating = float(series['rating'])
         year = try_get(series, "year", None)
@@ -191,7 +190,7 @@ class ShokoCommonAgent:
                 episodeObj = metadata.seasons[season].episodes[ep['epnumber']]
                 episodeObj.title = ep['name']
                 if (ep['summary'] != "Episode Overview not Available"): 
-                    episodeObj.summary = ep['summary']
+                    episodeObj.summary = re.sub(r'\nSource:[\w\W]*', "", ep['summary'])    ##Remove "Source:..." line frequently found in AniDB Episode Summaries
                 Log("" + str(ep['epnumber']) + ": " + ep['summary'])
 
                 if ep['air'] != '1/01/0001 12:00:00 AM' and ep['air'] != '0001-01-01':

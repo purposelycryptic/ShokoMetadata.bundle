@@ -3,16 +3,14 @@ ShokoMetadata.bundle
 This is a plex library metadata currently written **only** for TV shows.
 
 ## NOTE:
-This fork of Cazzar's ShokoMetadata Agent/Scanner is mostly me poking around trying to see if I can't add/fix/improve some things that have been bugging me so I can use it instead of HAMA, since Shoko has all that juicy, detailed, wonderfully organized metadata, but no effective way of really properly leveraging it on a platform like Plex. UNLIKE Cazzar, however, I only have a vague clue of what the hell I'm actually doing, so if you insist on trying this for youself, just know there is a good chance your machine may violently detonate, hatch into a three-headed duck, or achieve sentience and take over the world. It could also do nothing. YOU HAVE BEEN WARNED.
+This fork of Cazzar's ShokoMetadata Agent/Scanner is mostly me poking around trying to implement things that I personally want that may or may not be of value to others.
+UNLIKE Cazzar, however, I only have a vague clue of what the hell I'm actually doing, so if you insist on trying this for youself, just know there is a good chance your machine may violently detonate, hatch into a three-headed duck, or achieve sentience and take over the world. It could also do nothing. YOU HAVE BEEN WARNED.
 
 ## Notes
-Naming episodes/series works best with [This format](https://support.plex.tv/hc/en-us/articles/200220687-Naming-Series-Season-Based-TV-Shows) unless using the "Shoko Series scanner"
 
-- I reccomend installing the Shoko Series scanner into the `Scanners/Series` folder for better compatibility.
+- Use with Shoko Series scanner, installed into the `Scanners/Series` folder.
 - DO change the preferences to match what you have.
 
-# Plans
+# Changes from Cazzar's ShokoMetadata Agent/Scanner
 
-~~I do plan to in the long term to add things such as scrobbling to this plugin~~ - This has been added to Shoko, via webhooks
-
-~~Another future plan is in regards to syncing watched status between shoko and plex.~~ - This can be done inside shoko. via webhook or manual plex linking.
+ - Added RegEx cleaning script for AniDB Series/Episode Summaries
